@@ -82,7 +82,7 @@ void main() {
 
     L += OverlayColor.a * 0.35;
 
-    vec4 light = vec4(L.xxx, 1.0); //Lmao it's literally just this, thanks mr silicon
+    vec4 light = vec4(L, L, L, 1.0); //Lmao it's literally just this, thanks mr silicon
 
     vec4 fogColor;
     fogColor.rgb = FogColor.rgb;
