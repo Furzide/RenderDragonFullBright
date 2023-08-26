@@ -5,8 +5,8 @@ $input v_color0, v_fog, v_texcoord0, v_lightmapUV
 uniform vec4 FogColor;
 
 SAMPLER2D(s_MatTexture, 0);
-SAMPLER2D(s_LightMapTexture, 1);
-SAMPLER2D(s_SeasonsTexture, 2);
+SAMPLER2D(s_SeasonsTexture, 1);
+SAMPLER2D(s_LightMapTexture, 2);
 
 void main() {
     vec4 diffuse;
@@ -36,7 +36,7 @@ void main() {
     diffuse.a = 1.0;
 #endif
 
-    //diffuse.rgb *= texture2D(s_LightMapTexture, v_lightmapUV).rgb; //pov: it's that easy
+    //diffuse.rgb *= texture2D(s_LightMapTexture, v_lightmapUV).rgb; //pov: its that easy
 
     diffuse.rgb = mix(diffuse.rgb, FogColor.rgb, v_fog.a);
     gl_FragColor = diffuse;
