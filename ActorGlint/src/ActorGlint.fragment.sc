@@ -56,7 +56,7 @@ void main() {
     #endif
 
     albedo = applyActorDiffuse(albedo, v_color0.rgb, v_light, ColorBased.x, OverlayColor);
-    albedo = applyGlint(albedo, v_layerUv, s_MatTexture1, GlintColor, TileLightColor);
+    albedo = applyGlint(albedo, v_layerUv, s_MatTexture1, GlintColor, v_light);
 
     #if TRANSPARENT
         albedo = applyHudOpacity(albedo, HudOpacity.x);

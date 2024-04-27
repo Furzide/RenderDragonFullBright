@@ -32,7 +32,7 @@ void main() {
 
     albedo = applyOverlayColor(albedo, OverlayColor);
     albedo = applyLighting(albedo, v_light);
-    albedo = applyGlint(albedo, v_glintUV, s_GlintTexture, GlintColor, TileLightColor);
+    albedo = applyGlint(albedo, v_glintUV, s_GlintTexture, GlintColor, v_light);
 
     #if ALPHA_TEST
         if (albedo.a < 0.5) {
