@@ -9,7 +9,6 @@ uniform vec4 ChangeColor;
 uniform vec4 OverlayColor;
 uniform vec4 ColorBased;
 uniform vec4 MultiplicativeTintColor;
-uniform vec4 TileLightColor;
 uniform vec4 GlintColor;
 
 SAMPLER2D(s_GlintTexture, 0);

@@ -11,7 +11,6 @@ uniform vec4 UseAlphaRewrite;
 uniform vec4 TintedAlphaTestEnabled;
 uniform vec4 MatColor;
 uniform vec4 OverlayColor;
-uniform vec4 TileLightColor;
 uniform vec4 MultiplicativeTintColor;
 uniform vec4 FogColor;
 uniform vec4 FogControl;
