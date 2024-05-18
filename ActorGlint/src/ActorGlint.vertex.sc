@@ -45,8 +45,8 @@ void main() {
     vec2 layer2UV = calculateLayerUV(a_texcoord0, UVAnimation.y, UVAnimation.w, UVScale.xy);
     vec4 layerUV = vec4(layer1UV, layer2UV);
 
-    float lightIntensity = calculateLightIntensity(World, vec4(a_normal.xyz, 0.0), TileLightColor);
-    lightIntensity += OverlayColor.a * 0.35;
+    float L = calculateLightIntensity(World, vec4(a_normal.xyz, 0.0), TileLightColor);
+    L += OverlayColor.a * 0.35;
     vec4 light = vec4(L, L, L, 1.0); //fullbright
     
     //StandardTemplate_VertSharedTransform
