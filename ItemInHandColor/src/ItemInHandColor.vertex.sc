@@ -18,8 +18,8 @@ uniform vec4 TileLightColor;
 void main() {
     mat4 World = u_model[0];
 
-    float lightIntensity = calculateLightIntensity(World, vec4(a_normal.xyz, 0.0), TileLightColor);
-    lightIntensity += OverlayColor.a * 0.35;
+    float L = calculateLightIntensity(World, vec4(a_normal.xyz, 0.0), TileLightColor);
+    L += OverlayColor.a * 0.35;
     vec4 light = vec4(L, L, L, 1.0); //fullbright
 
     vec3 worldPosition;
