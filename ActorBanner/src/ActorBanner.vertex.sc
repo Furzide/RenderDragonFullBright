@@ -38,8 +38,8 @@ void main() {
     vec2 texcoord0 = a_texcoord0;
     texcoord0 = applyUvAnimation(texcoord0, UVAnimation);
 
-    float lightIntensity = calculateLightIntensity(World, vec4(a_normal.xyz, 0.0), TileLightColor);
-    lightIntensity += OverlayColor.a * 0.35;
+    float L = calculateLightIntensity(World, vec4(a_normal.xyz, 0.0), TileLightColor);
+    L += OverlayColor.a * 0.35;
     vec4 light = vec4(L, L, L, 1.0); //fullbright
     
     //StandardTemplate_VertSharedTransform
