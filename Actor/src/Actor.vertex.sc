@@ -35,24 +35,23 @@ void main() {
 
     vec2 texcoord0 = a_texcoord0;
     texcoord0 = applyUvAnimation(texcoord0, UVAnimation);
-	
-	//"L" means LightIntensity, I replaced it with L to make it easier to type.- Furzide
-    float L = calculateLightIntensity(World, vec4(a_normal.xyz, 0.0), TileLightColor);
-    L += OverlayColor.a * 0.35;
-    vec4 light = vec4(L, L, L, 1.0); //credit goes to silicon for blessing me with this knowledge.
+
+    float lightIntensity = calculateLightIntensity(World, vec4(a_normal.xyz, 0.0), TileLightColor);
+    lightIntensity += OverlayColor.a * 0.35;
+    vec4 light = vec4(L, L, L, 1.0); //fullbright
     
     //StandardTemplate_VertSharedTransform
     vec3 worldPosition;
-    #ifdef INSTANCING
-        mat4 model;
-        model[0] = vec4(i_data0.x, i_data1.x, i_data2.x, 0);
-        model[1] = vec4(i_data0.y, i_data1.y, i_data2.y, 0);
-        model[2] = vec4(i_data0.z, i_data1.z, i_data2.z, 0);
-        model[3] = vec4(i_data0.w, i_data1.w, i_data2.w, 1);
-        worldPosition = instMul(model, vec4(a_position, 1.0)).xyz;
-    #else
-        worldPosition = mul(World, vec4(a_position, 1.0)).xyz;
-    #endif
+#ifdef INSTANCING
+    mat4 model;
+    model[0] = vec4(i_data0.x, i_data1.x, i_data2.x, 0);
+    model[1] = vec4(i_data0.y, i_data1.y, i_data2.y, 0);
+    model[2] = vec4(i_data0.z, i_data1.z, i_data2.z, 0);
+    model[3] = vec4(i_data0.w, i_data1.w, i_data2.w, 1);
+    worldPosition = instMul(model, vec4(a_position, 1.0)).xyz;
+#else
+    worldPosition = mul(World, vec4(a_position, 1.0)).xyz;
+#endif
     
     vec4 position;// = mul(u_viewProj, vec4(worldPosition, 1.0));
 
@@ -62,13 +61,13 @@ void main() {
     float fogIntensity = calculateFogIntensity(cameraDepth, FogControl.z, FogControl.x, FogControl.y);
     vec4 fog = vec4(FogColor.rgb, fogIntensity);
 
-    #if defined(DEPTH_ONLY)
-        v_texcoord0 = vec2(0.0, 0.0);
-        v_color0 = vec4(0.0, 0.0, 0.0, 0.0);
-    #else
-        v_texcoord0 = texcoord0;
-        v_color0 = a_color0;
-    #endif
+#if defined(DEPTH_ONLY)
+    v_texcoord0 = vec2(0.0, 0.0);
+    v_color0 = vec4(0.0, 0.0, 0.0, 0.0);
+#else
+    v_texcoord0 = texcoord0;
+    v_color0 = a_color0;
+#endif
 
     v_fog = fog; 
     v_light = light;
