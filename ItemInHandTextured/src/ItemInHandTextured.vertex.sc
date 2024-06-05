@@ -3,16 +3,17 @@ $input a_position, a_normal, a_texcoord0, a_color0
     $input i_data0, i_data1, i_data2
 #endif
 
-$output v_texcoord0, v_color0, v_light, v_fog
+//$output v_texcoord0, v_color0, v_light, v_fog
+$output v_texcoord0, v_color0, v_light,
 
 #include <bgfx_shader.sh>
 #include <MinecraftRenderer.Materials/DynamicUtil.dragonh>
-#include <MinecraftRenderer.Materials/FogUtil.dragonh>
+//#include <MinecraftRenderer.Materials/FogUtil.dragonh>
 #include <MinecraftRenderer.Materials/TAAUtil.dragonh>
 
-uniform vec4 FogControl;
+//uniform vec4 FogControl;
 uniform vec4 OverlayColor;
-uniform vec4 FogColor;
+//uniform vec4 FogColor;
 uniform vec4 TileLightColor;
 
 void main() {
@@ -32,8 +33,8 @@ void main() {
 
     vec4 position = jitterVertexPosition(worldPosition);
     float cameraDepth = position.z;
-    float fogIntensity = calculateFogIntensity(cameraDepth, FogControl.z, FogControl.x, FogControl.y);
-    vec4 fog = vec4(FogColor.rgb, fogIntensity);
+    //float fogIntensity = calculateFogIntensity(cameraDepth, FogControl.z, FogControl.x, FogControl.y);
+    //vec4 fog = vec4(FogColor.rgb, fogIntensity);
 
 #if DEPTH_ONLY
     v_color0 = vec4(0.0, 0.0, 0.0, 0.0);
@@ -42,7 +43,7 @@ void main() {
 #endif
 
     v_light = light;
-    v_fog = fog;
+    //v_fog = fog;
     v_texcoord0 = a_texcoord0;
     gl_Position = position;
 }

@@ -1,8 +1,8 @@
-$input v_texcoord0, v_color0, v_light, v_fog
-
+$input v_texcoord0, v_color0, v_light
+//$input v_texcoord0, v_color0, v_light, v_fog
 #include <bgfx_shader.sh>
 #include <MinecraftRenderer.Materials/DynamicUtil.dragonh>
-#include <MinecraftRenderer.Materials/FogUtil.dragonh>
+//#include <MinecraftRenderer.Materials/FogUtil.dragonh>
 
 uniform vec4 ChangeColor;
 uniform vec4 OverlayColor;
@@ -33,7 +33,7 @@ void main() {
     }
 #endif
 
-    albedo.rgb = applyFog(albedo.rgb, v_fog.rgb, v_fog.a);
+    //albedo.rgb = applyFog(albedo.rgb, v_fog.rgb, v_fog.a);
     gl_FragColor = albedo;
 #endif // DEPTH_ONLY
 }

@@ -1,8 +1,8 @@
-$input v_color0, v_fog, v_texcoord0, v_lightmapUV
-
+$input v_color0, v_texcoord0, v_lightmapUV
+//$input v_color0, v_fog, v_texcoord0, v_lightmapUV
 #include <bgfx_shader.sh>
 
-uniform vec4 FogColor;
+//uniform vec4 FogColor;
 
 SAMPLER2D_AUTOREG(s_MatTexture);
 SAMPLER2D_AUTOREG(s_SeasonsTexture);
@@ -38,6 +38,6 @@ void main() {
 
     //diffuse.rgb *= texture2D(s_LightMapTexture, v_lightmapUV).rgb; //removing lighting code
 
-    diffuse.rgb = mix(diffuse.rgb, FogColor.rgb, v_fog.a);
+    //diffuse.rgb = mix(diffuse.rgb, FogColor.rgb, v_fog.a);
     gl_FragColor = diffuse;
 }

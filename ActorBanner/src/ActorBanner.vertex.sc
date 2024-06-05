@@ -3,10 +3,11 @@ $input a_position, a_color0, a_texcoord0, a_indices, a_normal
     $input i_data0, i_data1, i_data2
 #endif
 
-$output v_color0, v_fog, v_light, v_texcoord0, v_texcoords
+//$output v_color0, v_fog, v_light, v_texcoord0, v_texcoords
+$output v_color0, v_light, v_texcoord0, v_texcoords
 
 #include <bgfx_shader.sh>
-#include <MinecraftRenderer.Materials/FogUtil.dragonh>
+//#include <MinecraftRenderer.Materials/FogUtil.dragonh>
 #include <MinecraftRenderer.Materials/DynamicUtil.dragonh>
 #include <MinecraftRenderer.Materials/TAAUtil.dragonh>
 
@@ -18,8 +19,8 @@ uniform vec4 MatColor;
 uniform vec4 OverlayColor;
 uniform vec4 TileLightColor;
 uniform vec4 MultiplicativeTintColor;
-uniform vec4 FogColor;
-uniform vec4 FogControl;
+//uniform vec4 FogColor;
+//uniform vec4 FogControl;
 uniform vec4 ActorFPEpsilon;
 uniform vec4 LightDiffuseColorAndIntensity;
 uniform vec4 LightWorldSpaceDirection;
@@ -60,8 +61,8 @@ void main() {
     //StandardTemplate_InvokeVertexOverrideFunction
     position = jitterVertexPosition(worldPosition);
     float cameraDepth = position.z;
-    float fogIntensity = calculateFogIntensity(cameraDepth, FogControl.z, FogControl.x, FogControl.y);
-    vec4 fog = vec4(FogColor.rgb, fogIntensity);
+    //float fogIntensity = calculateFogIntensity(cameraDepth, FogControl.z, FogControl.x, FogControl.y);
+    //vec4 fog = vec4(FogColor.rgb, fogIntensity);
 
     vec4 texcoords;
     int frameIndex = int(a_color0.w * 255.0);
@@ -93,7 +94,7 @@ void main() {
     v_texcoords = texcoords;
 #endif
 
-    v_fog = fog;
+    //v_fog = fog;
     v_light = light;
     gl_Position = position;
 }

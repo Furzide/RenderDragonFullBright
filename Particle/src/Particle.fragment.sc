@@ -1,7 +1,7 @@
 $input v_color0, v_fog, v_texcoord0
 
 #include <bgfx_shader.sh>
-#include <MinecraftRenderer.Materials/FogUtil.dragonh>
+//#include <MinecraftRenderer.Materials/FogUtil.dragonh>
 
 SAMPLER2D_AUTOREG(s_ParticleTexture);
 
@@ -14,7 +14,7 @@ void main() {
 #endif
     
     //diffuse *= v_color0; //fullbright
-    diffuse.rgb = applyFog(diffuse.rgb, v_fog.rgb, v_fog.a);
+    //diffuse.rgb = applyFog(diffuse.rgb, v_fog.rgb, v_fog.a);
 
 #if ALPHA_TEST
     diffuse.a = 1.0;

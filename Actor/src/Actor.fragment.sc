@@ -1,8 +1,10 @@
-$input v_color0, v_fog, v_light, v_texcoord0
+//non destructive code editing ftw
+//$input v_color0, v_fog, v_light, v_texcoord0
+$input v_color0, v_light, v_texcoord0
 
 #include <bgfx_shader.sh>
 #include <MinecraftRenderer.Materials/ActorUtil.dragonh>
-#include <MinecraftRenderer.Materials/FogUtil.dragonh>
+//#include <MinecraftRenderer.Materials/FogUtil.dragonh>
 
 uniform vec4 ColorBased;
 uniform vec4 ChangeColor;
@@ -12,8 +14,8 @@ uniform vec4 MatColor;
 uniform vec4 OverlayColor;
 uniform vec4 TileLightColor;
 uniform vec4 MultiplicativeTintColor;
-uniform vec4 FogColor;
-uniform vec4 FogControl;
+//uniform vec4 FogColor;
+//uniform vec4 FogControl;
 uniform vec4 ActorFPEpsilon;
 uniform vec4 LightDiffuseColorAndIlluminance;
 uniform vec4 LightWorldSpaceDirection;
@@ -29,7 +31,8 @@ void main() {
     gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
     return;
 #elif DEPTH_ONLY_OPAQUE
-    gl_FragColor = vec4(applyFog(vec3(1.0, 1.0, 1.0), v_fog.rgb, v_fog.a), 1.0);
+    //gl_FragColor = vec4(applyFog(vec3(1.0, 1.0, 1.0), v_fog.rgb, v_fog.a), 1.0);
+	gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
     return;
 #else
 
@@ -58,8 +61,8 @@ void main() {
 #if TRANSPARENT
     albedo = applyHudOpacity(albedo, HudOpacity.x);
 #endif
-
-    albedo.rgb = applyFog(albedo.rgb, v_fog.rgb, v_fog.a);
+    //removing this should do the job nicely.
+    //albedo.rgb = applyFog(albedo.rgb, v_fog.rgb, v_fog.a);
     gl_FragColor = albedo;
 #endif // DEPTH_ONLY
 }
